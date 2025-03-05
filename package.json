@@ -1,5 +1,5 @@
 {
-  "name": "@gora/date-range-picker",
+  "name": "gora-date-range-picker",
   "version": "1.0.0",
   "description": "select a date or a range of dates.",
   "main": "dist/index.js",
