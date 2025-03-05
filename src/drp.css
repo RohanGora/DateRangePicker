@@ -1,0 +1,175 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.calendar {
+  padding: 5px;
+  width: 350px;
+  min-height: 220px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.calendar h3 {
+  margin: 0 0 20px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.day,
+.header {
+  padding: 3px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.header {
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.day {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.day.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.day.hover-range {
+  background-color: #d2d2d2;
+}
+
+.empty-day {
+  cursor: default;
+  background-color: transparent;
+}
+
+.empty-day:hover {
+  background-color: transparent;
+}
+
+.disabled-day {
+  cursor: not-allowed;
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+}
+
+.disabled-day:hover {
+  background-color: #e0e0e0;
+}
+
+.today {
+  border: 2px solid #4caf50;
+}
+
+.calendar-mobile {
+  display: block;
+  overflow-y: scroll;
+  height: 80vh;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px 0 20px;
+  z-index: 10;
+  display: none;
+}
+
+.popup.show {
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 20px;
+}
+
+.selected-range-input {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 250px;
+  text-align: center;
+}
+
+.mobile-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#selectedMobileRange,
+.apply-button .close-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    display: none;
+  }
+
+  #selectedMobileRange,
+  .apply-button .close-button {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .day:hover {
+    background-color: #d2d2d2;
+  }
+}
+
+#selectedMobileRange,
+.apply-button,
+.close-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #selectedMobileRange,
+  .apply-button,
+  .close-button {
+    display: block;
+  }
+}
