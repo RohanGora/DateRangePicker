@@ -13,33 +13,73 @@ export function initializeDateRangePicker(containerId, isRangeSelector = true) {
     document.head.appendChild(styleTag);
 
     // Main HTML structure
-    container.innerHTML = `
-        <div class="drp-wrapper">
-            <button class="drp-open-button">
-                <input
-                    class="drp-selected-range-input"
-                    id="drp-selectedRange"
-                    type="text"
-                    value=""
-                    placeholder="Select date(s)"
-                    readonly
-                />
-            </button>
-            <div class="drp-overlay" id="drp-overlay"></div>
-            <div class="drp-popup" id="drp-popup">
-                <div class="drp-navigation">
-                    <button class="drp-prev-nav">&lt;</button>
-                    <button class="drp-next-nav">&gt;</button>
-                </div>
-                <div class="drp-close-button">&cross;</div>
-                <div class="drp-calendar-container" id="drp-calendarContainer"></div>
-                <div class="drp-mobile-footer">
-                    <div id="drp-selectedMobileRange"></div>
-                    <button class="drp-apply-button">Select</button>
-                </div>
-            </div>
-        </div>
-    `;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'drp-wrapper';
+
+    const openButton = document.createElement('button');
+    openButton.className = 'drp-open-button';
+
+    const selectedRangeInput = document.createElement('input');
+    selectedRangeInput.className = 'drp-selected-range-input';
+    selectedRangeInput.id = 'drp-selectedRange';
+    selectedRangeInput.type = 'text';
+    selectedRangeInput.value = '';
+    selectedRangeInput.placeholder = 'Select date(s)';
+    selectedRangeInput.readOnly = true;
+
+    openButton.appendChild(selectedRangeInput);
+    wrapper.appendChild(openButton);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'drp-overlay';
+    overlay.id = 'drp-overlay';
+    wrapper.appendChild(overlay);
+
+    const popup = document.createElement('div');
+    popup.className = 'drp-popup';
+    popup.id = 'drp-popup';
+
+    const navigation = document.createElement('div');
+    navigation.className = 'drp-navigation';
+
+    const prevNav = document.createElement('button');
+    prevNav.className = 'drp-prev-nav';
+    prevNav.textContent = '<';
+
+    const nextNav = document.createElement('button');
+    nextNav.className = 'drp-next-nav';
+    nextNav.textContent = '>';
+
+    navigation.appendChild(prevNav);
+    navigation.appendChild(nextNav);
+    popup.appendChild(navigation);
+
+    const closeButton = document.createElement('div');
+    closeButton.className = 'drp-close-button';
+    closeButton.innerHTML = '&cross;';
+    popup.appendChild(closeButton);
+
+    const calendarContainer = document.createElement('div');
+    calendarContainer.className = 'drp-calendar-container';
+    calendarContainer.id = 'drp-calendarContainer';
+    popup.appendChild(calendarContainer);
+
+    const mobileFooter = document.createElement('div');
+    mobileFooter.className = 'drp-mobile-footer';
+
+    const selectedMobileRange = document.createElement('div');
+    selectedMobileRange.id = 'drp-selectedMobileRange';
+    mobileFooter.appendChild(selectedMobileRange);
+
+    const applyButton = document.createElement('button');
+    applyButton.className = 'drp-apply-button';
+    applyButton.textContent = 'Select';
+    mobileFooter.appendChild(applyButton);
+
+    popup.appendChild(mobileFooter);
+    wrapper.appendChild(popup);
+
+    container.appendChild(wrapper);
 
     // Constants and state
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
